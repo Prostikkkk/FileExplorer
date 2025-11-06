@@ -1,6 +1,8 @@
 {
     "files.associations": {
         "stdlib.h": "c",
-        "readfile.h": "c"
+        "readfile.h": "c",
+        "createfile.h": "c",
+        "string.h": "c"
     }
 }

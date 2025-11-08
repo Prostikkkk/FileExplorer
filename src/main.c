@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "readFile.h"
 #include "listFile.h"
-#include "createFile.h"
+#include "createAndWriteFile.h"
 
 
 int main(int argc, char** argv)
@@ -38,6 +38,32 @@ int main(int argc, char** argv)
             }
 
             create_file_action(fileName, path);
+        }
+        else if (strcmp(argv[1], "write")==0)
+        {   
+            char path[64];
+            if (fgets(path, sizeof(path), stdin) != NULL)
+            {   
+                size_t len = strlen(path);
+                if(len > 0 && path[len-1] == '\n')
+                {
+                    path[len - 1] = '\0';
+                }
+            }
+            write_rewrite_action(path, argv[2]);
+        }
+        else if (strcmp(argv[1], "delete") == 0)
+        {   
+            char path[64];
+            if (fgets(path, sizeof(path), stdin) != NULL)
+            {   
+                size_t len = strlen(path);
+                if(len > 0 && path[len-1] == '\n')
+                {
+                    path[len - 1] = '\0';
+                }   
+            }
+            remove(path);
         }
 
     }

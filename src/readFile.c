@@ -35,4 +35,6 @@ void read_file(char* fileName)
         printf("\n");
     }
     fclose(fptr);
+    return;
 }
+

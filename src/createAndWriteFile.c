@@ -1,27 +1,32 @@
 #include "createAndWriteFile.h"
 #include "isDir.h"
 
-void create_file_action(char* fileName, char* path)
+void create_file_action(const char* path)
 {   
-    FILE* fptr;
-    if(strlen(path) > 0)
+    char* dir = (char *) malloc(strlen(path)+1);
+    strcpy(dir, path);
+
+    char *slash = strrchr(dir, '/');
+
+    if(slash != NULL)
     {
-        if(isDir(path))
-        {   
-            strcat(path, fileName);
-            fptr = fopen(path, "w");
-        }
-        else
-        {
-            printf("Directory wasnt found");
-            return;
-        }
+        *slash = '\0';
+    }
+    else
+    {
+        strcpy(dir, ".");
+    }
+
+    if(isDir(dir))
+    {       
+        FILE* fptr;
+        fptr = fopen(path, "w");
+        fclose(fptr);
     }
     else 
     {
-        fptr = fopen(fileName, "w");
+        printf("The directory wanst found");
     }
-    fclose(fptr);
     return;
 }
 
@@ -57,6 +62,7 @@ void write_rewrite_action(const char* path, char* mode)
             return;
         }
 
+        printf("\nPRESS CTRL + D TO EXIT\n");
         char buffer[128];
         while(fgets(buffer, sizeof(buffer), stdin) != NULL)
         {

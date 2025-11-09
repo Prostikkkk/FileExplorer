@@ -12,7 +12,6 @@ void read_file(char* fileName)
 {   
     FILE* fptr; 
     fptr = fopen(fileName, "r");
-    
     if(fptr == NULL)
     {
         printf("The file is not opened");

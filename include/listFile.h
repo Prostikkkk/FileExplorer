@@ -9,7 +9,7 @@
 #include <dirent.h>
 #include <string.h>
 
-int isDir(const char*);
-void show_dir_content(char*, int);
+void show_dir_content(char*, int, char*);
+char* find_path(char* path, char* dir);
 
 #endif
